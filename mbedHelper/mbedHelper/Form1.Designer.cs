@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage_flashing = new System.Windows.Forms.TabPage();
+            this.button_restartPutty = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button_refreshDevices = new System.Windows.Forms.Button();
             this.comboBox_targetDevice = new System.Windows.Forms.ComboBox();
@@ -62,7 +63,6 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.openFileDialog_binFile = new System.Windows.Forms.OpenFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button_restartPutty = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage_flashing.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -103,6 +103,17 @@
             this.tabPage_flashing.TabIndex = 0;
             this.tabPage_flashing.Text = "flashing";
             this.tabPage_flashing.UseVisualStyleBackColor = true;
+            // 
+            // button_restartPutty
+            // 
+            this.button_restartPutty.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button_restartPutty.Location = new System.Drawing.Point(398, 60);
+            this.button_restartPutty.Name = "button_restartPutty";
+            this.button_restartPutty.Size = new System.Drawing.Size(70, 34);
+            this.button_restartPutty.TabIndex = 6;
+            this.button_restartPutty.Text = "restart PuTTY";
+            this.button_restartPutty.UseVisualStyleBackColor = true;
+            this.button_restartPutty.Click += new System.EventHandler(this.button_restartPutty_Click);
             // 
             // groupBox2
             // 
@@ -348,6 +359,7 @@
             this.linkLabel_homepage.TabIndex = 4;
             this.linkLabel_homepage.TabStop = true;
             this.linkLabel_homepage.Text = "software homepage: \r\nhttp://software.dsinf.net/mbedHelper";
+            this.linkLabel_homepage.Visible = false;
             // 
             // label2
             // 
@@ -408,17 +420,6 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // button_restartPutty
-            // 
-            this.button_restartPutty.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button_restartPutty.Location = new System.Drawing.Point(398, 60);
-            this.button_restartPutty.Name = "button_restartPutty";
-            this.button_restartPutty.Size = new System.Drawing.Size(70, 34);
-            this.button_restartPutty.TabIndex = 6;
-            this.button_restartPutty.Text = "restart PuTTY";
-            this.button_restartPutty.UseVisualStyleBackColor = true;
-            this.button_restartPutty.Click += new System.EventHandler(this.button_restartPutty_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -426,6 +427,7 @@
             this.ClientSize = new System.Drawing.Size(484, 152);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "mbed.org helper";

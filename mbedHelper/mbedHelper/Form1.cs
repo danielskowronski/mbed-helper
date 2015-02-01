@@ -77,7 +77,7 @@ namespace mbedHelper
             for (int i = 0; i < comboBox_targetDevice.Items.Count; i++)
             {
                 var a = comboBox_targetDevice.Items[i].ToString();
-                if (_selectedTargetPath == null) break; //??
+                if (_selectedTargetPath == null) break; //FIXME
                 if (a.IndexOf(_selectedTargetPath) != -1) { idx = i; break; }
             }
             if (idx >= 0)
@@ -105,7 +105,6 @@ namespace mbedHelper
             }
             if (autoRun)
             {
-                //return;
                 this.WindowState = FormWindowState.Minimized; //to show progress on taskbar and don't bother user (note: developed on win 10 build 9926)
             }
             setProgress(0);
@@ -115,6 +114,7 @@ namespace mbedHelper
 
             if (_selectedTargetPath == null || _selectedTargetPath=="")
             {
+                this.WindowState = FormWindowState.Normal;
                 MessageBox.Show("Target device not present - plug in device or change settings");
                 return;
             }
@@ -136,6 +136,7 @@ namespace mbedHelper
             catch (Exception ex)
             {
                 setProgress(40, Microsoft.WindowsAPICodePack.Taskbar.TaskbarProgressBarState.Error);
+                this.WindowState = FormWindowState.Normal;
                 MessageBox.Show("Flash failed!\n\n" + ex.ToString());
                 return;
             }
@@ -147,7 +148,7 @@ namespace mbedHelper
             if (autoRun)
             {
                 timer1.Interval = 500;
-                //timer1.Start();//sleep, then exit app //CP: for dev disable
+                timer1.Start();//sleep, then exit app
             }
         }
         private void button_refreshDevices_Click(object sender, EventArgs e)
@@ -203,8 +204,8 @@ namespace mbedHelper
             }
             catch (Exception ex)
             {
+                this.WindowState = FormWindowState.Normal;
                 MessageBox.Show("Baudrate should be number!");
-                //textBox_config_baudrate.Text = "";
             }
         }
 
@@ -248,7 +249,18 @@ namespace mbedHelper
 
         private void comboBox_targetDevice_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //IMPLEMENT ME, SENPAI!
+            string current = comboBox_targetDevice.SelectedItem.ToString();
+            current = current.Substring(0, 2);
+            _selectedTargetPath = null;
+            
+            foreach (DriveInfo drive in DriveInfo.GetDrives())
+            {
+                if (drive.IsReady && drive.Name.IndexOf(current) != -1)
+                {
+                    _selectedTargetPath = drive.RootDirectory.ToString();
+                }
+            }
+            
         }
 
         private void button_flash_Click(object sender, EventArgs e)
