@@ -20,3 +20,6 @@ C# .NET 4.0
 
 ### current usability status
 99% of working version coded; not yet packed for deployment
+
+### more
+http://blog.dsinf.net/2015/02/mbed-helper/ -- article on my blog (in Polish)
